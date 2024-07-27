@@ -1,0 +1,7 @@
+<div class="outer-div">
+    <div style="margin-bottom: 2rem;" class="inner-div">
+        <div class="product-card" *ngFor="let product of products">
+            <app-product [product]="product" [handleShow]="handleShow"></app-product>
+        </div>
+    </div>
+</div>

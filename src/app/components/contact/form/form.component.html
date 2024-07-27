@@ -1,0 +1,39 @@
+<div class="main-container">
+    <div class="form-container">
+        <h2>Please send us any requests or queries using this form:</h2>
+        <form id="contactForm" name="contactForm" method="POST" data-netlify="true" data-netlify-honeypot="bot-field"
+            data-netlify-recaptcha="true" (ngSubmit)="onSubmitHandler($event)">
+            <input type="hidden" name="form-name" value="contactForm" />
+
+            <label for="name">
+                Your name
+                <input id="name" type="text" name="name" />
+            </label>
+
+            <label for="email">
+                Your email
+                <span class="form-mandatory">*</span>
+                <input id="email" type="email" name="email" required />
+            </label>
+
+            <label for="message">
+                Message
+                <span class="form-mandatory">*</span>
+                <textarea id="message" name="message"></textarea>
+            </label>
+
+            <label>
+                <div style="display: flex; align-items: center;">
+                    <input id="agree" type="checkbox" name="agree" required />
+                    <span class="check-text">
+                        I am happy to receive emails regarding this message & according to the
+                        <a href="/terms" target="_blank">Terms & Conditions</a>
+                        <span class="form-asterisk">*</span>
+                    </span>
+                </div>
+            </label>
+
+            <input type="submit" value="Send a message" class="input-button" />
+        </form>
+    </div>
+</div>

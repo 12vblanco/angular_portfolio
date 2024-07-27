@@ -1,0 +1,18 @@
+<div class="navbar">
+    <a routerLink="/">
+        <div class="logo-div">
+            <img src="../../../../assets/images/logo.png" alt="tree rings's logo" />
+            <h1 class="name">Tree Rings</h1>
+        </div>
+    </a>
+    <div id="app">
+        <app-nav-menu *ngIf="isDesktop" [links]="links"></app-nav-menu>
+        <app-burger-menu *ngIf="!isDesktop" (showMenu)="handleToggle()"></app-burger-menu>
+    </div>
+</div>
+<div class="overlay" [class.show]="isOpen">
+    <app-nav-menu [links]="links" [isDesktop]="isDesktop" (closeMenu)="handleToggle()"></app-nav-menu>
+</div>
+<div *ngIf="show && productsCount > 0">
+    <app-modal *ngIf="show && productsCount > 0" [handleClose]="handleCloseModal"></app-modal>
+</div>

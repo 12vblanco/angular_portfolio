@@ -1,0 +1,18 @@
+<div class="main-container">
+    <div class="entry-container">
+        <div class="img-col">
+            <img [src]="entry.image" [alt]="entry.title" class="blog-image">
+        </div>
+        <div class="text-col">
+            <div class="blog-content">
+                <h2 class="blog-title">{{ entry.title }}</h2>
+                <h3 class="blog-subtitle">{{ entry.subtitle }}</h3>
+                <p class="blog-date">{{ entry.date }}</p>
+                <p class="blog-text">{{ entry.text }}</p>
+                <div class="blog-tags">
+                    <span *ngFor="let tag of entry.tags" class="blog-tag">{{ tag }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

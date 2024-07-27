@@ -1,0 +1,22 @@
+.main-container {
+    width: 100%;
+    margin-top: 140px;
+    padding: 0 15px;
+    margin: 0 auto;
+    margin-top: 160px;
+  }
+  
+  .styled-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -15px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+    background: #f1f4f4;
+    border-radius: 8px;
+  }
+  
+  .blog-entry-card {
+    margin-bottom: 20px;
+  }

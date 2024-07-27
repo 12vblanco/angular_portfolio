@@ -1,0 +1,9 @@
+<div class="burger-div" (click)="clickHandler()">
+    <div class="menu-icon">
+        <app-modal-close-icon *ngIf="isOpen" class="close-icon"
+            strokeColor="var(--color-secondary)">&times;</app-modal-close-icon>
+        <app-burger-icon *ngIf="!isOpen" class="burger-icon"
+            strokeColor="var(--color-secondary)">&#9776;</app-burger-icon>
+        <span class="counter">{{ productsCount }}</span>
+    </div>
+</div>

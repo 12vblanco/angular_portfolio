@@ -1,0 +1,21 @@
+<div *ngIf="productData">
+    <div class="row-div" style="margin-top: 0.75rem;">
+        <img class="img" [alt]="'A print of the rings of a tree'" [src]="productData.img" />
+        <div class="column-div">
+            <p class="name">{{ productData.name }}</p>
+            <div class="qty-div">
+                <h3 class="qty">
+                    {{ quantity }}
+                    <span>{{ quantity > 1 ? ' units' : ' unit' }}</span>
+                </h3>
+            </div>
+            <h3 class="price">
+                Price: £ {{ totalPrice }}
+                <button class="remove-button" (click)="removeFromCart()">
+                    Delete
+                </button>
+            </h3>
+        </div>
+    </div>
+    <hr style="margin-top: 1rem;">
+</div>

@@ -1,0 +1,54 @@
+.burger-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    width: 60px;
+    height: 60px;
+    margin-right: 4%;
+    
+    cursor: pointer;
+  }
+  
+  .menu-icon {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    cursor: pointer;
+    font-size: 55px;
+  }
+  .close-icon {
+    margin-right: 7px;
+    margin-top: -2px;
+    font-size: 72px;
+  }
+    
+  .counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: #fff;
+    width: 24px;
+    height: 24px;
+    font-size: 20px;
+    background: var(--color-accent);
+    padding:  14px;
+    position: relative;
+    top: -14px;
+    right: 8px;
+  }
+  
+
+  @media (max-width: 440px){
+    .counter{
+      right: 8px;
+    }
+    .close-icon{
+      margin-right: 5px;
+    }
+    .menu-icon {
+      margin-right: -20px;
+    }
+  }

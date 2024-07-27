@@ -1,0 +1,18 @@
+<div class="productWrapper">
+    <div (click)="clickHandler()">
+        <app-info-icon
+            [strokeColor]="isDarkBg(product.name) ? 'var(--color-primary)' : 'var(--color-secondary)'"></app-info-icon>
+        <div *ngIf="showInfo" class="description" [innerHTML]="product.description"></div>
+        <img [src]="product.img" alt="A print of tree rings" class="img" />
+    </div>
+    <div style="padding-top: 50px; display: flex;">
+        <div class="column-div">
+            <h2 class="name">{{ product.name }}</h2>
+            <div class="row-div">
+                <h4 class="format">{{ product.format }}</h4>
+                <span class="price">£{{ product.price }}</span>
+            </div>
+        </div>
+        <app-add-to-button [product]="product" [handleShow]="handleShow"></app-add-to-button>
+    </div>
+</div>

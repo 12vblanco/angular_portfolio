@@ -1,0 +1,35 @@
+<div class="modal-wrapper">
+    <div class="modal-header" [ngStyle]="headerStyle">
+        <p *ngIf="cartItemsCount > 0">Your basket:</p>
+        <p *ngIf="cartItemsCount === 0">Your cart is empty</p>
+        <div class="close">
+            <app-modal-close-icon (click)="handleClose()"></app-modal-close-icon>
+        </div>
+    </div>
+    <ng-container *ngIf="cartItemsCount > 0">
+        <div>
+            <app-cart-product *ngFor="let item of cartItems" [id]="item.id"
+                [quantity]="item.quantity"></app-cart-product>
+        </div>
+        <div class="row-checkout">
+            <div style="display: flex; align-items: center;">
+                <img [src]="stripeImg" style="width: 60px; height: 28px; margin-right: 17px; border-radius: 12px;"
+                    alt="Stripe" />
+                <p>
+                    Total:
+                    <span style="font-weight: 500;">
+                        £{{ totalCost.toFixed(2) }}
+                    </span>
+                </p>
+            </div>
+            <button class="checkout-button" (click)="checkout()">Checkout</button>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="cartItemsCount === 0">
+        <h5 (click)="goToHome()">
+            <div>Click <span>
+                    <add-to-cart-icon /> </span>
+                to add items</div>
+        </h5>
+    </ng-container>
+</div>

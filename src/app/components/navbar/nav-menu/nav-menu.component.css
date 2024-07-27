@@ -1,0 +1,38 @@
+.nav-link {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    margin: 20px;
+    font-weight: 400;
+  
+    a {
+      color: var(--color-secondary);
+      text-decoration: none;
+
+      &:hover, &:focus, &:active {
+        color: var(--color-accent);
+      }
+    }
+  }
+  
+  .cart-link {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: -82px;
+    margin-top: 22px;
+  }
+  
+  .nav-menu {
+    display: flex;
+  }
+
+  @media (max-width: 1140px) {
+    .nav-menu {
+      flex-direction: column;
+    }
+  }

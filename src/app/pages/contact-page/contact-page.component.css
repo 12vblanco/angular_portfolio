@@ -1,0 +1,21 @@
+.outer-div {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+  margin-top: 140px;
+  height: fit-content;
+}
+
+.about-container {
+    max-width: 100rem;
+    height: auto;
+    padding: 1.25rem;
+    margin: 0 auto;
+  }
+  
+
+  @media (max-width: 440px){
+    .outer-div{
+      margin-top: 120px;
+    }
+  }

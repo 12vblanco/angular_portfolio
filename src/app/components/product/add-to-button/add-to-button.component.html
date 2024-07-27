@@ -1,0 +1,12 @@
+<div *ngIf="product" class="add-to-wrapper">
+    <div *ngIf="productQty < 1" class="row-div">
+        <add-to-cart-icon (click)="addToCart()"></add-to-cart-icon>
+    </div>
+    <div *ngIf="productQty > 0" class="column-div" style="font-size: 2.6rem;">
+        <div class="row-div">
+            <span class="minus" (click)="removeFromCart()">-</span>
+            <span class="plus" (click)="addToCart()">+</span>
+        </div>
+        <span class="qty" (click)="handleShow(product)">{{ productQty }}</span>
+    </div>
+</div>

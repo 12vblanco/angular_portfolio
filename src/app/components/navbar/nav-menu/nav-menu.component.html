@@ -1,0 +1,10 @@
+<nav class="nav-menu">
+    <div class="nav-link" *ngFor="let link of links">
+        <a [routerLink]="link.path" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+            (click)="handleClick()">{{ link.name }}</a>
+    </div>
+    <div class="cart-link" [style.margin-left]="isDesktop ? '38px' : '-22px'"
+        [style.margin-top]="isDesktop ? '-68px' : '-14px'">
+        <app-cart class="cart-link" />
+    </div>
+</nav>

@@ -1,0 +1,68 @@
+.remove-button {
+    color: var(--color-accent);
+    background: var(--color-bg);
+    padding: 0.125rem 0.25rem;
+    margin-left: 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 2px solid var(--color-accent);
+    transition: all 0.3s;
+    box-shadow: 0.1rem 0.1rem 0.1rem rgba(3, 3, 3, 0.4);
+  }
+  
+  .remove-button:hover {
+    box-shadow: 0.1rem 0.3rem 1rem rgba(3, 3, 3, 0.4);
+  }
+  
+  .remove-button:active {
+    box-shadow: 0.1rem 0.1rem 0.1rem rgba(3, 3, 3, 0.4);
+  }
+  
+  .name {
+    letter-spacing: -0.03rem;
+    font-size: 0.9375rem;
+    font-style: italic;
+    font-weight: 500;
+  }
+  
+  .qty {
+    font-size: 0.9375rem;
+    font-weight: 400;
+  }
+  
+  .qty span {
+    color: var(--color-secondary);
+    font-size: 0.9375rem;
+  }
+  
+  .price {
+    color: var(--color-secondary);
+    font-size: 0.9375rem;
+    font-weight: 400;
+  }
+  
+  .img {
+    max-width: 60px;
+    border-radius: 6px;
+  }
+  
+  .row-div {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    margin-top: 0.75rem;
+  }
+  
+  .column-div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0 1rem;
+  }
