@@ -1,64 +1,47 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css'],
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule]
+  styleUrls: ['./form.component.css']
 })
-export class FormComponent implements OnInit {
+export class FormComponent {
   contactForm: FormGroup;
-  
-  constructor(private http: HttpClient, private router: Router) {
-    this.contactForm = new FormGroup({
-      name: new FormControl(''),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      message: new FormControl('', [Validators.required]),
-      agree: new FormControl(false, [Validators.requiredTrue])
-    });
-  }
-  
-  ngOnInit(): void {
-    this.contactForm = new FormGroup({
-      name: new FormControl(''),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      message: new FormControl('', [Validators.required]),
-      agree: new FormControl(false, [Validators.requiredTrue])
+
+  constructor(private fb: FormBuilder, private router: Router) {
+    this.contactForm = this.fb.group({
+      name: [''],
+      email: ['', [Validators.required, Validators.email]],
+      message: [''],
+      consent: [false, Validators.requiredTrue]
     });
   }
 
-  onSubmitHandler(event: Event) {
-    event.preventDefault();
-
+  onSubmit() {
     if (this.contactForm.valid) {
-      const formData = this.contactForm.value;
-      formData['form-name'] = 'contactForm';
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded'
+      const formData = new URLSearchParams();
+      Object.keys(this.contactForm.value).forEach(key => {
+        formData.set(key, this.contactForm.value[key]);
       });
 
-      this.http
-        .post('/', new URLSearchParams(formData).toString(), { headers, responseType: 'text' })
-        .subscribe(
-          () => {
-            console.log('Form submission successful');
-            this.router.navigate(['/success']);
-          },
-          (error) => {
-            console.error('Form submission error:', error);
-            alert(error);
-          }
-        );
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString(),
+      })
+      .then(response => {
+        if (response.ok) {
+          this.router.navigate(['/success']);
+        } else {
+          throw new Error('Form submission failed');
+        }
+      })
+      .catch(error => {
+        console.error('Submission error', error);
+        alert(error);
+      });
     }
   }
-
-  get name() { return this.contactForm.get('name'); }
-  get email() { return this.contactForm.get('email'); }
-  get message() { return this.contactForm.get('message'); }
-  get agree() { return this.contactForm.get('agree'); }
 }
