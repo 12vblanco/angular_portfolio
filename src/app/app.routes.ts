@@ -5,7 +5,7 @@ import { BlogPageComponent } from './pages/blog-page/blog-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { TermsComponent } from './pages/terms/terms.component';
-// import { SuccessComponent } from './components/contact/suc-pagecess/success.component'; 
+import { SuccessComponent } from '../app/components/contact/success/success.component'; 
 import { ErrorPaymentComponent } from './components/product/error-payment/error-payment.component';
 import { SuccessPaymentComponent } from './components/product/success-payment/success-payment.component';
 
@@ -15,7 +15,7 @@ export const routes: Routes = [
   { path: 'contact', component: ContactPageComponent },
   { path: 'blog', component: BlogPageComponent },
   { path: 'terms', component: TermsComponent },
-  // { path: 'success', component: SuccessComponent },
+  { path: 'success', component: SuccessComponent },
   { path: 'success-payment', component: SuccessPaymentComponent },
   { path: 'error-payment', component: ErrorPaymentComponent },
 ];

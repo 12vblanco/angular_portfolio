@@ -32,6 +32,7 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.products = products;
+    window.scrollTo(0, 0);
   }
 
   handleShow(product: Product): void {

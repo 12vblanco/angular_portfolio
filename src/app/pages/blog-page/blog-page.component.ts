@@ -13,4 +13,7 @@ import { BlogEntryComponent } from '../../components/blog/blog-entry/blog-entry.
 })
 export class BlogPageComponent {
   blogEntries = blogEntries;
+  ngOnInit() {
+    window.scrollTo(0, 0);
+  }
 }
