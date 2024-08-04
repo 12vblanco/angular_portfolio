@@ -1,41 +1,61 @@
-import { Component } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
-  standalone: true,
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css'],
+  styleUrls: ['./form.component.css']
 })
-export class FormComponent {
-  constructor(private router: Router) {}
-
-  onSubmitHandler(event: Event): void {
-    event.preventDefault();
-    const formElement = event.target as HTMLFormElement;
-    const formData = new FormData(formElement);
-    const formObject: { [key: string]: string } = {};
-    formData.forEach((value, key) => {
-      formObject[key] = value.toString();
+export class FormComponent implements OnInit {
+  contactForm: FormGroup;
+  
+  constructor(private http: HttpClient, private router: Router) {
+    this.contactForm = new FormGroup({
+      name: new FormControl(''),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      message: new FormControl('', [Validators.required]),
+      agree: new FormControl(false, [Validators.requiredTrue])
     });
-    console.log('Form Data:', formObject);
-
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formObject).toString(),
-    })
-      .then((response) => {
-        if (response.ok) {
-          console.log('Form submission successful');
-          this.router.navigate(['/success']);
-        } else {
-          throw new Error('Form submission failed');
-        }
-      })
-      .catch((error) => {
-        console.error('Form submission error:', error);
-        alert(error.message);
-      });
   }
+  
+  ngOnInit(): void {
+    this.contactForm = new FormGroup({
+      name: new FormControl(''),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      message: new FormControl('', [Validators.required]),
+      agree: new FormControl(false, [Validators.requiredTrue])
+    });
+  }
+
+  onSubmitHandler(event: Event) {
+    event.preventDefault();
+
+    if (this.contactForm.valid) {
+      const formData = this.contactForm.value;
+      formData['form-name'] = 'contactForm';
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      });
+
+      this.http
+        .post('/', new URLSearchParams(formData).toString(), { headers, responseType: 'text' })
+        .subscribe(
+          () => {
+            console.log('Form submission successful');
+            this.router.navigate(['/success']);
+          },
+          (error) => {
+            console.error('Form submission error:', error);
+            alert(error);
+          }
+        );
+    }
+  }
+
+  get name() { return this.contactForm.get('name'); }
+  get email() { return this.contactForm.get('email'); }
+  get message() { return this.contactForm.get('message'); }
+  get agree() { return this.contactForm.get('agree'); }
 }

@@ -11,6 +11,13 @@
 
 <body>
   <app-root></app-root>
+  <form name="contactForm" method="POST" netlify hidden>
+    <input type="hidden" name="form-name" value="contactForm" />
+    <input type="hidden" id="name" name="name" />
+    <input type="hidden" id="email" name="email" />
+    <textarea type="hidden" id="message" name="message"></textarea>
+    <input type="hidden" id="agree" name="agree" />
+  </form>
 </body>
 
 </html>

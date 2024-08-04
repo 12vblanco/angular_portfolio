@@ -17,7 +17,7 @@ import { CartContext } from './utils/cart.context';
 @NgModule({
   declarations: [
     AppComponent,
-    
+    FormComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +31,7 @@ import { CartContext } from './utils/cart.context';
     SuccessPaymentComponent,
     ErrorPaymentComponent,
     CartComponent,
-    FormComponent
+    
   ],
   providers: [CartContext],
   bootstrap: [AppComponent]
