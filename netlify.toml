@@ -1,7 +1,0 @@
-[build]
-  publish = "dist/angular_portfolio"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
