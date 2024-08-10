@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app/app.routes';
-import { FormComponent } from '../app/components/contact/form/form.component';
-import { SuccessComponent } from '../app/components/contact/success/success.component';
 import { AppComponent } from './app.component';
+import { FormComponent } from './components/contact/form/form.component';
+import { SuccessComponent } from './components/contact/success/success.component';
+import { SharedModule } from './shared.module';
 
 @NgModule({
   declarations: [
@@ -15,9 +16,11 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

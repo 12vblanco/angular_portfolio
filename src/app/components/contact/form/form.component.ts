@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,39 +9,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent {
-  contactForm: FormGroup;
+  form: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
-    this.contactForm = this.fb.group({
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private router: Router
+  ) {
+    this.form = this.fb.group({
       name: [''],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', Validators.required],
       message: [''],
       consent: [false, Validators.requiredTrue]
     });
   }
 
   onSubmit() {
-    if (this.contactForm.valid) {
-      const formData = new URLSearchParams();
-      Object.keys(this.contactForm.value).forEach(key => {
-        formData.set(key, this.contactForm.value[key]);
-      });
-
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: formData.toString(),
-      })
-      .then(response => {
-        if (response.ok) {
-          this.router.navigate(['/success']);
-        } else {
-          throw new Error('Form submission failed');
+    if (this.form.valid) {
+      const formData = new FormData();
+      for (const key in this.form.value) {
+        if (this.form.value.hasOwnProperty(key)) {
+          formData.append(key, this.form.value[key]);
         }
-      })
-      .catch(error => {
-        console.error('Submission error', error);
-        alert(error);
+      }
+
+      this.http.post('/', formData).subscribe({
+        next: () => this.router.navigate(['/success']),
+        error: (error) => console.error('Submission error', error)
       });
     }
   }
