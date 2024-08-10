@@ -13,21 +13,15 @@ export class FormComponent {
   onSubmitHandler(event: Event): void {
     event.preventDefault();
     const formElement = event.target as HTMLFormElement;
-    const formData = new FormData(formElement);
-    const formObject: { [key: string]: string } = {};
-    formData.forEach((value, key) => {
-      formObject[key] = value.toString();
-    });
-    console.log('Form Data:', formObject);
-
+  
+    // Option 1: Directly let Netlify handle it, then navigate on success
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formObject).toString(),
+      body: new URLSearchParams(new FormData(formElement) as any).toString(),
     })
       .then((response) => {
         if (response.ok) {
-          console.log('Form submission successful');
           this.router.navigate(['/success']);
         } else {
           throw new Error('Form submission failed');
